@@ -2,6 +2,7 @@
 import { forwardRef, InputHTMLAttributes, memo, ReactNode } from "react";
 
 export interface BaseInputProps extends InputHTMLAttributes<HTMLInputElement> {
+	name: string;
 	label?: string;
 	error?: string;
 	helper?: string;
@@ -55,21 +56,21 @@ const BaseInput = memo(
 							{...props}
 						/>
 						{right && (
-							<div className="top-1/2 right-4 absolute flex items-center -translate-y-1/2">
+							<div className="absolute flex items-center -translate-y-1/2 top-1/2 right-4">
 								{right}
 							</div>
 						)}
-
-						{(error ?? helper) && (
-							<p
-								className={`mt-1 text-sm ${
-									error ? "text-error-400" : "text-gray-400"
-								}`}
-							>
-								{error ?? helper}
-							</p>
-						)}
 					</div>
+
+					{(error ?? helper) && (
+						<p
+							className={`mt-1 text-sm ${
+								error ? "text-error-400" : "text-gray-400"
+							}`}
+						>
+							{error ?? helper}
+						</p>
+					)}
 				</div>
 			);
 		},
