@@ -1,23 +1,21 @@
-import { SignUpFormProps } from "@/example/SignUpForm/SignUpForm";
+import { LoginFormProps } from "@/example/LogInForm/LoginForm";
 import { validateEmail, validatePassword } from "@/utils/validate";
 import { ChangeEventHandler, FormEvent, useCallback, useState } from "react";
+import useAuth from "./useAuth";
 
 interface FormState {
 	email: string;
 	password: string;
-	passwordConfirm: string;
 }
 
 type FormErrors = Partial<FormState>;
 
-const useSignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
-	const [form, setForm] = useState<FormState>({
-		email: "",
-		password: "",
-		passwordConfirm: "",
-	});
+const useLoginForm = ({ onSuccess, onError }: LoginFormProps) => {
+	const [form, setForm] = useState<FormState>({ email: "", password: "" });
 	const [errors, setErrors] = useState<FormErrors>({});
 	const [isLoading, setIsLoading] = useState(false);
+
+	const { login } = useAuth();
 
 	const handleInputChange: ChangeEventHandler<HTMLInputElement> = useCallback(
 		(evt) => {
@@ -38,12 +36,9 @@ const useSignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
 		const passwordError = validatePassword(form.password);
 		if (passwordError) newErrors.password = passwordError;
 
-		if (form.password !== form.passwordConfirm)
-			newErrors.passwordConfirm = "비밀번호가 다릅니다";
-
 		setErrors(newErrors);
 		return Object.keys(newErrors).length === 0;
-	}, [form.email, form.password, form.passwordConfirm]);
+	}, []);
 
 	const handleSubmit = useCallback(
 		async (evt: FormEvent) => {
@@ -53,7 +48,7 @@ const useSignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
 
 			setIsLoading(true);
 			try {
-				await signup();
+				await login();
 				onSuccess?.();
 			} catch (error) {
 				onError?.(error as Error);
@@ -61,7 +56,7 @@ const useSignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
 				setIsLoading(false);
 			}
 		},
-		[onError, onSuccess, validateForm],
+		[login, onError, onSuccess, validateForm],
 	);
 
 	return {
@@ -73,8 +68,4 @@ const useSignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
 	};
 };
 
-export default useSignUpForm;
-
-const signup = async () => {
-	return new Promise((resolve) => setTimeout(resolve, 2000));
-};
+export default useLoginForm;

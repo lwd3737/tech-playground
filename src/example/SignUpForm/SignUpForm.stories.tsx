@@ -12,8 +12,8 @@ const meta = {
 export default meta;
 
 const ActionsData = {
-	onSuccess: fn(() => alert("로그인 성공")),
-	onError: fn(() => alert("로그인 실패")),
+	onSuccess: fn(() => alert("회원가입 성공")),
+	onError: fn(() => alert("회원가입 실패")),
 };
 
 type Story = StoryObj<typeof meta>;
