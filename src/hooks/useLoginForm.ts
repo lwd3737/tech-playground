@@ -38,7 +38,7 @@ const useLoginForm = ({ onSuccess, onError }: LoginFormProps) => {
 
 		setErrors(newErrors);
 		return Object.keys(newErrors).length === 0;
-	}, []);
+	}, [form.email, form.password]);
 
 	const handleSubmit = useCallback(
 		async (evt: FormEvent) => {
@@ -48,7 +48,7 @@ const useLoginForm = ({ onSuccess, onError }: LoginFormProps) => {
 
 			setIsLoading(true);
 			try {
-				await login();
+				await login({ email: form.email, password: form.password });
 				onSuccess?.();
 			} catch (error) {
 				onError?.(error as Error);
@@ -56,7 +56,7 @@ const useLoginForm = ({ onSuccess, onError }: LoginFormProps) => {
 				setIsLoading(false);
 			}
 		},
-		[login, onError, onSuccess, validateForm],
+		[form.email, form.password, login, onError, onSuccess, validateForm],
 	);
 
 	return {
