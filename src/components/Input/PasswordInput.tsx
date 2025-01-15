@@ -1,6 +1,7 @@
 import { forwardRef, useState } from "react";
 import BaseInput, { BaseInputProps } from "./BaseTextInput";
 import { EyeIcon } from "../Icon";
+import BaseButton from "../Button/BaseButton";
 
 export type PasswordInputProps = Omit<BaseInputProps, "type" | "right">;
 
@@ -11,10 +12,9 @@ const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
 		const toggleVisibility = () => setIsVisible(!isVisible);
 
 		const VisibilityIcon = (
-			// TODO: 공통 Button 컴포넌트로 교체
-			<button onClick={toggleVisibility}>
+			<BaseButton variant="icon" color="icon" onClick={toggleVisibility}>
 				<EyeIcon className={`${isVisible ? "opacity-70" : "opacity-100"}`} />
-			</button>
+			</BaseButton>
 		);
 
 		return (
