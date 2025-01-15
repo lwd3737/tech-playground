@@ -1,3 +1,4 @@
+import BaseButton from "@/components/Button/BaseButton";
 import PasswordInput from "@/components/Input/PasswordInput";
 import TextInput from "@/components/Input/TextInput";
 import useLoginForm from "@/hooks/useLoginForm";
@@ -38,10 +39,15 @@ const LoginForm = ({ onSuccess, onError }: LoginFormProps) => {
 				onChange={handleInputChange}
 			/>
 
-			{/* TODO: 공통 버튼 컴포넌트로 교체 */}
-			<button className="bg-primary-500 p-5 rounded-xl font-bold text-xl">
+			<BaseButton
+				type="submit"
+				size="full"
+				variant="filled"
+				color="primary"
+				isLoading={isLoading}
+			>
 				로그인
-			</button>
+			</BaseButton>
 		</form>
 	);
 };

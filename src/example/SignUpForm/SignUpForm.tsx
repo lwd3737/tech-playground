@@ -1,3 +1,4 @@
+import BaseButton from "@/components/Button/BaseButton";
 import { EmailIcon } from "@/components/Icon";
 import PasswordInput from "@/components/Input/PasswordInput";
 import TextInput from "@/components/Input/TextInput";
@@ -58,10 +59,18 @@ const SignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
 				onChange={handleInputChange}
 			/>
 
-			{/* TODO: 공통 버튼 컴포넌트로 교체 */}
 			<button className="p-5 text-xl font-bold bg-primary-500 rounded-xl">
 				회원가입
 			</button>
+			<BaseButton
+				type="submit"
+				size="full"
+				variant="filled"
+				color="primary"
+				isLoading={isLoading}
+			>
+				{isLoading ? "회원가입 중..." : "회원가입"}
+			</BaseButton>
 		</form>
 	);
 };
