@@ -44,8 +44,8 @@ const BaseButton = memo(
 
 			return (
 				<button
-					className={`${BASE_STYLE} ${SIZE_STYLES[size]} ${
-						VARIANT_STYLES[variant][color]
+					className={`${Styles.BASE} ${Styles.SIZE[size]} ${
+						Styles.VARIANT[variant][color]
 					} ${loadingStyle} ${className ?? ""}`}
 					ref={ref}
 					disabled={disabled ?? isLoading}
@@ -86,44 +86,44 @@ BaseButton.displayName = "BaseButton";
 
 export default BaseButton;
 
-const BASE_STYLE =
-	"flex justify-center items-center gap-2 rounded-xl font-medium transition-all duration-200 diabled:opacity-50 disabled:cursor-not-allowed";
-
-const SIZE_STYLES: Record<ButtonSize, string> = {
-	sm: "h-[4rem] px-4 text-body-sm",
-	md: "h-[4.8rem] px-6 text-body",
-	lg: "h-[5.6rem] px-8 text-body",
-	full: "w-full h-[5.6rem] px-8 text-body",
-	icon: "w-[3.2rem] h-[3.2rem]",
-};
-
-const VARIANT_STYLES: Record<ButtonVariant, Record<ButtonColor, string>> = {
-	filled: {
-		primary: "bg-primary text-white hover:bg-primary-600 active:bg-primary-700",
-		"primary-500":
-			"bg-primary-500 text-white hover:bg-primary-600 active:bg-primary-700",
-		"primary-400":
-			"bg-primary-400 text-white hover:bg-primary-500 active:bg-primary-600",
-		gray: "",
-		white: "",
-		icon: "",
+const Styles = {
+	BASE: "flex justify-center items-center gap-2 rounded-xl font-medium transition-all duration-200 diabled:opacity-50 disabled:cursor-not-allowed",
+	SIZE: {
+		sm: "h-[4rem] px-4 text-body-sm",
+		md: "h-[4.8rem] px-6 text-body",
+		lg: "h-[5.6rem] px-8 text-body",
+		full: "w-full h-[5.6rem] px-8 text-body",
+		icon: "w-[3.2rem] h-[3.2rem]",
 	},
-	text: {
-		primary: "text-primary hover:bg-primary/10 active:bg-primary/20",
-		"primary-500":
-			"text-primary-500 hover:bg-primary-500/10 active:bg-primary-500/20",
-		"primary-400":
-			"text-primary-400 hover:bg-primary-400/10 active:bg-primary-400/20",
-		gray: "",
-		white: "",
-		icon: "",
-	},
-	icon: {
-		primary: "",
-		"primary-500": "",
-		"primary-400": "",
-		gray: "",
-		white: "",
-		icon: "",
+	VARIANT: {
+		filled: {
+			primary:
+				"bg-primary text-white hover:bg-primary-600 active:bg-primary-700",
+			"primary-500":
+				"bg-primary-500 text-white hover:bg-primary-600 active:bg-primary-700",
+			"primary-400":
+				"bg-primary-400 text-white hover:bg-primary-500 active:bg-primary-600",
+			gray: "",
+			white: "",
+			icon: "",
+		},
+		text: {
+			primary: "text-primary hover:bg-primary/10 active:bg-primary/20",
+			"primary-500":
+				"text-primary-500 hover:bg-primary-500/10 active:bg-primary-500/20",
+			"primary-400":
+				"text-primary-400 hover:bg-primary-400/10 active:bg-primary-400/20",
+			gray: "",
+			white: "",
+			icon: "",
+		},
+		icon: {
+			primary: "",
+			"primary-500": "",
+			"primary-400": "",
+			gray: "",
+			white: "",
+			icon: "",
+		},
 	},
 };
