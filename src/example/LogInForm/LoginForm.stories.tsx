@@ -1,3 +1,4 @@
+import "@/styles/globals.css";
 import { Meta, StoryObj } from "@storybook/react";
 import LoginForm, { LoginFormProps } from "./LoginForm";
 import AuthProvider from "@/providers/AuthProvider";
